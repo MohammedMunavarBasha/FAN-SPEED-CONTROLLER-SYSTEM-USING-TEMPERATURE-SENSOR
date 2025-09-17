@@ -12,10 +12,8 @@
 	Temperature Sensor (DHT11/DHT22/TMP36)
 
 # Circuit Diagram:
+<img width="1361" height="739" alt="image" src="https://github.com/user-attachments/assets/e8b774c4-008c-4b5a-b7c2-e3cef034016b" />
 
----
-To upload
---
 
 # Procedure // Modify the procedure based on your circuit
 
@@ -57,12 +55,66 @@ Step 7: Save Your Work
 
 # Program
 
+```
+const int analogIn = A0;
+int humiditysensorOutput = 0;
+// Defining Variables
+int RawValue= 0;
+double Voltage = 0;
+double tempC = 0;
+double tempF = 0;
+void setup(){
+ Serial.begin(9600);
+ pinMode(A1, INPUT);
+}
+void loop(){
+ RawValue = analogRead(analogIn);
+ Voltage = (RawValue / 1023.0) * 5000; // 5000 to get millivots.
+ tempC = (Voltage-500) * 0.1; // 500 is the offset
+ tempF = (tempC * 1.8) + 32; // convert to F
+ Serial.print("Raw Value = " );
+ Serial.print(RawValue);
+ Serial.print("\t milli volts = ");
+ Serial.print(Voltage,0); //
+ Serial.print("\t Temperature in C = ");
+ Serial.print(tempC,1);
+ Serial.print("\t Temperature in F = ");
+ Serial.println(tempF,1);
+ humiditysensorOutput = analogRead(A1);
+ Serial.print("Humidity: "); // Printing out Humidity Percentage
+ Serial.print(map(humiditysensorOutput, 0, 1023, 10, 70));
+ Serial.println("%");
+ delay(5000); //iterate every 5 seconds
+}
+```
+
+# Output
+
 ---
-To upload
---
+
+
+https://github.com/user-attachments/assets/5a31194d-a5a0-45a8-8b21-aa29e9f95bf9
+
+
 
 # Result
 
----
-To upload
---
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 37%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Raw Value = 153 milli volts = 748 Temperature in C = 24.8 Temperature in F = 76.6 Humidity: 36%
+
+Thus, Fan Speed Controller System was successfully executed using Arduino in TinkeCad
